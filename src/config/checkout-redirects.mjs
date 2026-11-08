@@ -27,20 +27,21 @@ export function resolveCheckoutPathRedirect(pathname) {
   return null;
 }
 
-/** Astro static build + Cloudflare `_redirects` (302 to Zadeyo checkout). */
+/** Astro build redirects (trailing-slash paths only — avoids route collisions). */
 export function checkoutRedirectsForAstro() {
   return Object.fromEntries(
-    [...CHECKOUT_PATH_REDIRECTS.entries()].map(([route, destination]) => [
-      route,
-      { status: 302, destination },
-    ]),
+    [...CHECKOUT_PATH_REDIRECTS.entries()]
+      .filter(([route]) => route.endsWith('/') && route.length > 1)
+      .map(([route, destination]) => [route, { status: 302, destination }]),
   );
 }
 
-/** Lines for `public/_redirects` (kept in sync with CHECKOUT_PATH_REDIRECTS). */
+/**
+ * Cloudflare `_redirects` for paths without a trailing slash.
+ * Trailing-slash `/go/.../` routes are handled by Astro redirects above.
+ */
 export function checkoutRedirectsFileLines() {
-  return [...CHECKOUT_PATH_REDIRECTS.entries()].map(([route, destination]) => {
-    const source = route.endsWith('/') && route.length > 1 ? route.slice(0, -1) : route;
-    return `${source}  ${destination}  302`;
-  });
+  return [...CHECKOUT_PATH_REDIRECTS.entries()]
+    .filter(([route]) => !route.endsWith('/'))
+    .map(([route, destination]) => `${route}  ${destination}  302`);
 }
