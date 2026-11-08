@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { findSitemap0Path, getStaticOutputDir } from './dist-output.mjs';
+import { SITE_ORIGIN } from '../src/config/site-origin.mjs';
 
 const staticDir = getStaticOutputDir();
 const source = findSitemap0Path();
@@ -43,7 +44,7 @@ fs.writeFileSync(path.join(staticDir, 'sitemap.xml'), formatted, 'utf8');
 const indexXml = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
-    <loc>https://armacheats.org/sitemap.xml</loc>
+    <loc>${SITE_ORIGIN}/sitemap.xml</loc>
     <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>
   </sitemap>
 </sitemapindex>

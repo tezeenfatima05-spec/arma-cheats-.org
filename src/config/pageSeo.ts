@@ -10,9 +10,9 @@ export interface PageSeoEntry {
 
 export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/': {
-    title: 'ARMA REFORGER Cheats — Aimbot, ESP & Wallhack | ARMA Cheats',
+    title: 'Arma Reforger Cheats – Aimbot, ESP & Wallhack | ARMA Cheats',
     description:
-      'Explore ARMA REFORGER cheats for PC featuring customizable aimbot, player ESP, wallhack, skeleton ESP, health bars, weapon information, and Cloud DMA support at ARMA Cheats.',
+      'Arma Reforger cheats for PC: customizable aimbot, player ESP, wallhack, skeleton overlays, health bars, weapon info, and Cloud DMA compatibility.',
   },
   '/products/arma-reforger-cheats/': {
     title: 'ARMA REFORGER Cheats for PC — Aimbot & Player ESP',
@@ -35,19 +35,34 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'HWID spoofer utilities for identifier cleanup and rotation when your PC needs a fresh hardware profile.',
   },
   '/blog/': {
-    title: 'ARMA REFORGER Guides & Setup Tips',
+    title: 'ARMA Reforger guides, setup tips & articles | Cheats',
     description:
-      'Aimbot tuning, ESP config, Cloud DMA notes, and purchase walkthroughs for ARMA REFORGER cheats on armacheats.org.',
+      'ARMA Reforger aimbot tuning, ESP config, Cloud DMA notes, and purchase walkthroughs for PC cheats on armacheats.org.',
+  },
+  '/blog/arma-reforger-aimbot-setup/': {
+    title: 'Aimbot – FOV, smoothness & target bones | Cheats',
+    description:
+      'Configure hold vs always-on aimbot, pick target bones, and draw adaptive FOV without overshooting on ARMA REFORGER PC play.',
+  },
+  '/blog/arma-reforger-esp-guide/': {
+    title: 'ESP – boxes, skeletons & team filters | Cheats',
+    description:
+      'Balance corner boxes, gradient fills, skeleton thickness, and team filters for readable wallhack-style ESP on ARMA REFORGER.',
+  },
+  '/blog/arma-reforger-cloud-dma/': {
+    title: 'Cloud DMA – firmware, cabling & OS checks | Cheats',
+    description:
+      'What Cloud DMA compatibility means on PC and what to verify—firmware, cabling, and OS—before checkout for ARMA REFORGER.',
   },
   '/forum/': {
-    title: 'ARMA REFORGER Community Forum | ARMA Cheats',
+    title: 'Arma Reforger Community Forum — aimbot & ESP | Cheats',
     description:
-      'Discuss aimbot settings, ESP layouts, config profiles, and setup questions for ARMA REFORGER on PC.',
+      'Arma Reforger community forum: discuss aimbot settings, ESP layouts, config profiles, and setup questions for PC play.',
   },
   '/faq/': {
-    title: 'FAQ | ARMA REFORGER Cheats & Setup',
+    title: 'FAQ — ARMA REFORGER cheats, setup & checkout | Cheats',
     description:
-      'Answers on aimbot, player ESP, Cloud DMA, checkout, configs, and guides at armacheats.org.',
+      'FAQ: answers on aimbot, player ESP, Cloud DMA, checkout, configs, and guides for ARMA REFORGER at armacheats.org.',
   },
   '/terms/': {
     title: 'Terms & Conditions | ARMA Cheats',
@@ -55,14 +70,14 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
       'Purchase terms, license use, and refund policy for ARMA Cheats products sold through armacheats.org.',
   },
   '/privacy/': {
-    title: 'Privacy Policy | ARMA Cheats',
+    title: 'Privacy policy — cookies, analytics & contact data | Cheats',
     description:
-      'How armacheats.org uses analytics, cookies, and contact data when you browse or request support.',
+      'Privacy: how armacheats.org uses analytics, cookies, and contact data when you browse, purchase, or request support.',
   },
   '/about/': {
-    title: 'About ARMA Cheats',
+    title: 'About ARMA Cheats — REFORGER guides & product notes',
     description:
-      'What ARMA Cheats publishes: ARMA REFORGER feature guides, setup tips, and status notes at armacheats.org.',
+      'What ARMA Cheats publishes: ARMA REFORGER feature guides, setup walkthroughs, status notes, and support paths at armacheats.org.',
   },
   '/support/': {
     title: 'Support | ARMA Cheats',

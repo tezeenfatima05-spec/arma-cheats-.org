@@ -6,8 +6,13 @@ import {
   checkoutRedirectsForAstro,
 } from './src/config/checkout-redirects.mjs';
 
+const siteOrigin = (process.env.PUBLIC_SITE_ORIGIN || 'https://armacheats.org').replace(
+  /\/$/,
+  '',
+);
+
 export default defineConfig({
-  site: 'https://armacheats.org',
+  site: siteOrigin,
   trailingSlash: 'always',
   redirects: {
     '/cheats/': '/products/arma-reforger-cheats/',

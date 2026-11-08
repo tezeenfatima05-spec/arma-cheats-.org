@@ -6,10 +6,10 @@ const productLink = `[ARMA REFORGER cheats](${PRODUCT_BASE})`;
 export const blogPosts: BlogPostFull[] = [
   {
     tag: 'Setup',
-    title: 'ARMA REFORGER aimbot setup: FOV, smoothness, and bones',
+    title: 'ARMA REFORGER aimbot setup: FOV, smoothness & cheats',
     slug: 'arma-reforger-aimbot-setup',
     image: '/images/blog/arma-reforger-aimbot-setup.webp',
-    desc: 'Configure hold vs always aimbot, pick target bones, and draw adaptive FOV without overshooting.',
+    desc: 'Configure hold vs always-on aimbot, pick target bones, and draw adaptive FOV without overshooting.',
     date: 'Mar 1, 2026',
     readTime: '6 min read',
     body: [
@@ -35,16 +35,16 @@ export const blogPosts: BlogPostFull[] = [
   },
   {
     tag: 'Features',
-    title: 'ARMA REFORGER ESP guide: boxes, skeletons, and health bars',
+    title: 'ARMA REFORGER ESP guide: boxes, skeletons & cheats',
     slug: 'arma-reforger-esp-guide',
     image: '/images/blog/arma-reforger-esp-guide.webp',
-    desc: 'Balance corner boxes, gradient fills, skeleton thickness, and team filters for clear wallhack-style ESP.',
+    desc: 'Balance corner boxes, gradient fills, skeleton thickness, and team filters for clear wallhack-style overlays.',
     date: 'Feb 28, 2026',
     readTime: '7 min read',
     body: [
       {
         type: 'p',
-        text: `Player ESP is the core wallhack-style layer in ${productLink}. Pick ESP style with or without background first—background helps readability on bright maps but adds clutter in CQB.`,
+        text: `Player wallhack visuals are the core overlay layer in ${productLink}. Pick box style with or without background first—background helps readability on bright maps but adds clutter in CQB.`,
       },
       { type: 'h2', text: 'Boxes and skeletons' },
       {

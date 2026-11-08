@@ -3,6 +3,6 @@ Allow: /
 
 Disallow: /go/
 
-Sitemap: https://armacheats.org/sitemap.xml
+Sitemap: /sitemap.xml
 
 # RSS: https://armacheats.org/rss.xml
