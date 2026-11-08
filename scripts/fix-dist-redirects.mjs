@@ -21,7 +21,7 @@ export function fixDistRedirects() {
         .readFileSync(target, 'utf8')
         .split(/\r?\n/)
         .map((line) => line.trim())
-        .filter((line) => line && !line.startsWith('/go/'))
+        .filter((line) => line && !line.startsWith('#') && !line.startsWith('/go/'))
     : [];
 
   const seen = new Set();
@@ -35,7 +35,8 @@ export function fixDistRedirects() {
   }
 
   fs.mkdirSync(path.dirname(target), { recursive: true });
-  fs.writeFileSync(target, `${kept.join('\n')}\n`, 'utf8');
+  const header = `# workers-redirects ${new Date().toISOString()}\n`;
+  fs.writeFileSync(target, `${header}${kept.join('\n')}\n`, 'utf8');
 
   const seenAfterWrite = new Set();
   for (const line of kept) {

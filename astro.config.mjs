@@ -3,6 +3,7 @@ import cloudflare from '@astrojs/cloudflare';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import { sitemapSerialize } from './src/config/sitemap.ts';
+import workersRedirects from './integrations/workers-redirects.mjs';
 const siteOrigin = (process.env.PUBLIC_SITE_ORIGIN || 'https://armacheats.org').replace(
   /\/$/,
   '',
@@ -34,6 +35,7 @@ export default defineConfig({
     host: true,
   },
   integrations: [
+    workersRedirects(),
     sitemap({
       filter: (page) => !page.includes('/404') && !page.includes('/go/'),
       serialize: sitemapSerialize,
