@@ -1,3 +1,6 @@
+# Legacy checkout redirects — must never ship to Workers Static Assets
+public/_redirects
+
 # build output
 dist/
 .wrangler/

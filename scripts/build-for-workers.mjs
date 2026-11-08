@@ -1,5 +1,6 @@
 import { spawnSync } from 'node:child_process';
 
+/** Same pipeline Wrangler Workers Builds injects — keep in sync for overwrite resilience. */
 const steps = [
   'node scripts/sync-checkout-redirects.mjs',
   'node scripts/import-arma-brand-icon.mjs',
@@ -8,6 +9,7 @@ const steps = [
   'node scripts/prune-dist-images.mjs',
   'node scripts/finalize-sitemap.mjs',
   'node scripts/indexnow.mjs',
+  'node scripts/fix-dist-redirects.mjs',
 ];
 
 for (const step of steps) {

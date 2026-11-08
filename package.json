@@ -7,9 +7,10 @@
   },
   "scripts": {
     "dev": "astro dev --host 0.0.0.0 --port 3000",
-    "build": "node scripts/build-for-workers.mjs",
+    "build": "node scripts/sync-checkout-redirects.mjs && node scripts/import-arma-brand-icon.mjs && node scripts/optimize-images.mjs && astro build && node scripts/prune-dist-images.mjs && node scripts/finalize-sitemap.mjs && node scripts/indexnow.mjs && node scripts/fix-dist-redirects.mjs",
     "postbuild": "node scripts/fix-dist-redirects.mjs",
-    "deploy": "npm run build && node scripts/assert-workers-redirects.mjs && wrangler deploy --config wrangler.jsonc",
+    "workers:deploy": "node scripts/ci-workers-deploy.mjs",
+    "deploy": "npm run workers:deploy",
     "prebuild": "node scripts/clean-stale-dist-redirects.mjs",
     "preview": "astro preview --host 0.0.0.0",
     "start": "node scripts/serve.mjs",

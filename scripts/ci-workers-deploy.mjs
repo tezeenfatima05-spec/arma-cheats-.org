@@ -1,11 +1,23 @@
+/**
+ * Cloudflare Workers Builds: use as deploy command
+ *   npm run workers:deploy
+ * Avoids `npx wrangler deploy` re-running `astro add cloudflare` and overwriting package.json.
+ */
 import { spawnSync } from 'node:child_process';
-import { fixDistRedirects } from './fix-dist-redirects.mjs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { writeWorkersRedirectsOnly } from './workers-redirects-body.mjs';
 
-fixDistRedirects();
+const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 
-const wrangler = spawnSync('npx', ['wrangler', 'deploy', '--no-bundle'], {
-  stdio: 'inherit',
-  shell: true,
-});
+function run(cmd, args) {
+  const result = spawnSync(cmd, args, { cwd: root, stdio: 'inherit', shell: false });
+  if (result.status !== 0) process.exit(result.status ?? 1);
+}
 
-process.exit(wrangler.status === null ? 1 : wrangler.status);
+run(process.execPath, [path.join(root, 'scripts', 'build-for-workers.mjs')]);
+writeWorkersRedirectsOnly();
+run(process.execPath, [path.join(root, 'scripts', 'assert-workers-redirects.mjs')]);
+
+const wranglerBin = path.join(root, 'node_modules', 'wrangler', 'bin', 'wrangler.js');
+run(process.execPath, [wranglerBin, 'deploy', '--config', path.join(root, 'wrangler.jsonc')]);

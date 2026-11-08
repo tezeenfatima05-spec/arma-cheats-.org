@@ -1,6 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
+import { wipeDistOutput } from './workers-redirects-body.mjs';
+import './ensure-no-public-redirects.mjs';
+
+wipeDistOutput();
 
 const root = process.cwd();
 const widths = [320, 400, 512, 640, 960];

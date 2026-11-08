@@ -11,9 +11,12 @@ if (/^\/go\//m.test(body)) {
   console.error('[deploy] FATAL: _redirects must not contain /go rules\n', body);
   process.exit(1);
 }
-const lines = body.trim().split('\n').filter(Boolean);
-if (lines.length !== 6) {
-  console.error(`[deploy] FATAL: expected 6 redirect rules, got ${lines.length}`);
+const ruleLines = body
+  .trim()
+  .split('\n')
+  .filter((line) => line.trim() && !line.trim().startsWith('#'));
+if (ruleLines.length !== 6) {
+  console.error(`[deploy] FATAL: expected 6 redirect rules, got ${ruleLines.length}`);
   process.exit(1);
 }
 console.log('[deploy] _redirects OK (6 rules, no /go)');

@@ -1,5 +1,6 @@
 import { spawnSync } from 'node:child_process';
-import { wipeDistOutput, writeWorkersRedirectsOnly } from './workers-redirects-body.mjs';
+import { wipeDistOutput } from './workers-redirects-body.mjs';
+import './ensure-no-public-redirects.mjs';
 
 wipeDistOutput();
 
