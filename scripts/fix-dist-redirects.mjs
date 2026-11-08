@@ -36,8 +36,19 @@ export function fixDistRedirects() {
 
   fs.mkdirSync(path.dirname(target), { recursive: true });
   fs.writeFileSync(target, `${kept.join('\n')}\n`, 'utf8');
+
+  const seenAfterWrite = new Set();
+  for (const line of kept) {
+    const key = redirectPathKey(line);
+    if (seenAfterWrite.has(key)) {
+      console.error(`[build] ERROR: duplicate _redirects rule for path ${key}`);
+      process.exit(1);
+    }
+    seenAfterWrite.add(key);
+  }
+
   console.log(
-    `Fixed _redirects: ${kept.length} rule(s) → ${path.relative(process.cwd(), target)}`,
+    `[build] Fixed _redirects: ${kept.length} rule(s) → ${path.relative(process.cwd(), target)}`,
   );
 }
 
