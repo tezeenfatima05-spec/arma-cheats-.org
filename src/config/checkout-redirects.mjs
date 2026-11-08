@@ -27,21 +27,12 @@ export function resolveCheckoutPathRedirect(pathname) {
   return null;
 }
 
-/** Astro build redirects (trailing-slash paths only — avoids route collisions). */
-export function checkoutRedirectsForAstro() {
-  return Object.fromEntries(
-    [...CHECKOUT_PATH_REDIRECTS.entries()]
-      .filter(([route]) => route.endsWith('/') && route.length > 1)
-      .map(([route, destination]) => [route, { status: 302, destination }]),
-  );
-}
-
 /**
- * Cloudflare `_redirects` for paths without a trailing slash.
- * Trailing-slash `/go/.../` routes are handled by Astro redirects above.
+ * Cloudflare `_redirects` only (do not also add these in astro.config — the
+ * Cloudflare adapter merges both into dist and rejects duplicate paths).
  */
 export function checkoutRedirectsFileLines() {
-  return [...CHECKOUT_PATH_REDIRECTS.entries()]
-    .filter(([route]) => !route.endsWith('/'))
-    .map(([route, destination]) => `${route}  ${destination}  302`);
+  return [...CHECKOUT_PATH_REDIRECTS.entries()].map(
+    ([route, destination]) => `${route}  ${destination}  302`,
+  );
 }
