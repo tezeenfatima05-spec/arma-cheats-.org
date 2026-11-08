@@ -2,6 +2,9 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import { sitemapSerialize } from './src/config/sitemap.ts';
+import {
+  checkoutRedirectsForAstro,
+} from './src/config/checkout-redirects.mjs';
 
 export default defineConfig({
   site: 'https://armacheats.org',
@@ -13,6 +16,7 @@ export default defineConfig({
     '/cheats/elite/': '/products/arma-reforger-cheats/arma-reforger/',
     '/cheats/compare/': '/blog/arma-reforger-aimbot-setup/',
     '/contact/': '/support/',
+    ...checkoutRedirectsForAstro(),
   },
   compressHTML: true,
   prefetch: {

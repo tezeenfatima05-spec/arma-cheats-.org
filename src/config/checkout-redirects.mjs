@@ -26,3 +26,21 @@ export function resolveCheckoutPathRedirect(pathname) {
 
   return null;
 }
+
+/** Astro static build + Cloudflare `_redirects` (302 to Zadeyo checkout). */
+export function checkoutRedirectsForAstro() {
+  return Object.fromEntries(
+    [...CHECKOUT_PATH_REDIRECTS.entries()].map(([route, destination]) => [
+      route,
+      { status: 302, destination },
+    ]),
+  );
+}
+
+/** Lines for `public/_redirects` (kept in sync with CHECKOUT_PATH_REDIRECTS). */
+export function checkoutRedirectsFileLines() {
+  return [...CHECKOUT_PATH_REDIRECTS.entries()].map(([route, destination]) => {
+    const source = route.endsWith('/') && route.length > 1 ? route.slice(0, -1) : route;
+    return `${source}  ${destination}  302`;
+  });
+}
