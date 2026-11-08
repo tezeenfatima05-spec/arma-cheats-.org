@@ -10,6 +10,8 @@ export type CheckoutProduct = keyof typeof CHECKOUT;
 /** URL slug for /go/[slug]/ checkout redirect pages. */
 export const CHECKOUT_SLUGS: Record<CheckoutProduct, string> = {
   armaReforger: 'arma-reforger',
+  cloudDma: 'cloud-dma',
+  hwidSpoofer: 'hwid-spoofer',
 };
 
 export const CHECKOUT_SLUG_TO_PRODUCT = Object.fromEntries(
@@ -26,7 +28,15 @@ export const PRIMARY_CHECKOUT_PATH = checkoutPath('armaReforger');
 
 /** Map internal product slugs to checkout redirect paths. */
 export function checkoutForSlug(slug: string): string {
-  return checkoutPath('armaReforger');
+  switch (slug) {
+    case 'cloud-dma':
+      return checkoutPath('cloudDma');
+    case 'hwid-spoofer':
+      return checkoutPath('hwidSpoofer');
+    case 'arma-reforger':
+    default:
+      return checkoutPath('armaReforger');
+  }
 }
 
 /** Resolve blog CTA or legacy href values to internal checkout paths. */
@@ -43,6 +53,12 @@ export function resolveCheckoutHref(href: string): string {
 
   if (href.includes('%2Fproducts%2Farma-reforger') || href.includes('/products/arma-reforger')) {
     return checkoutPath('armaReforger');
+  }
+  if (href.includes('%2Fproducts%2Fcloud-dma') || href.includes('/products/cloud-dma')) {
+    return checkoutPath('cloudDma');
+  }
+  if (href.includes('%2Fproducts%2Fhwid-spoofer') || href.includes('/products/hwid-spoofer')) {
+    return checkoutPath('hwidSpoofer');
   }
 
   return href;

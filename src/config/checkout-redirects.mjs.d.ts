@@ -1,5 +1,7 @@
 export declare const CHECKOUT_URLS: {
   readonly armaReforger: string;
+  readonly cloudDma: string;
+  readonly hwidSpoofer: string;
 };
 
 export declare const CHECKOUT_PATH_REDIRECTS: ReadonlyMap<string, string>;

@@ -64,6 +64,8 @@ export const productRelatedBlogSlugs: Record<string, string[]> = {
     'arma-reforger-cloud-dma',
     'how-to-buy-arma-reforger-cheats',
   ],
+  'cloud-dma': ['arma-reforger-cloud-dma', 'how-to-buy-arma-reforger-cheats'],
+  'hwid-spoofer': ['how-to-buy-arma-reforger-cheats'],
 };
 
 const productBase = PRODUCT_BASE;
@@ -262,7 +264,127 @@ const armaReforgerPage: ProductPage = {
   relatedBlogSlugs: productRelatedBlogSlugs['arma-reforger'],
 };
 
-export const productPages: ProductPage[] = [armaReforgerPage];
+const cloudDmaPage: ProductPage = {
+  slug: 'cloud-dma',
+  kind: 'utility',
+  badge: 'Available',
+  category: 'DMA hardware',
+  name: 'Cloud DMA',
+  title: 'Cloud DMA',
+  subtitle: 'External DMA workflow for PC',
+  desc: 'Cloud DMA software and setup path for ARMA REFORGER external suites—verify firmware and cabling before checkout.',
+  features: [
+    'DMA compatibility checks',
+    'Firmware guidance',
+    'External read workflow',
+    'Works with ARMA REFORGER suite',
+    'Portal setup notes',
+    'Status-aware launches',
+  ],
+  more: 4,
+  buyUrl: checkoutForSlug('cloud-dma'),
+  images: slide('gpWorld', 'gpMisc', 'gpAimbot'),
+  overview: {
+    title: 'Hardware-ready Cloud DMA path',
+    paragraphs: [
+      'Cloud DMA is the external memory access stack many ARMA REFORGER builds expect. This product covers the DMA side—separate from the in-game cheat menu but required on supported rigs.',
+      'Read the Cloud DMA article on the blog and confirm your hardware against checkout notes before you buy the ARMA REFORGER suite or this standalone add-on.',
+    ],
+  },
+  acquisition: {
+    title: 'How to get Cloud DMA',
+    steps: defaultAcquisitionSteps,
+  },
+  goodToKnow:
+    'DMA firmware and motherboard compatibility change over time. Check armacheats.org status and the Cloud DMA guide before purchase or firmware flashes.',
+  limitations:
+    'DMA tools involve hardware risk if used incorrectly. You are responsible for verifying compatibility and following setup guides.',
+  fullFeatures: [
+    'Compatibility checklist',
+    'Firmware version notes',
+    'External device pairing',
+    'Launch with ARMA REFORGER loader',
+    'Portal documentation',
+    'Support email escalation',
+  ],
+  systemRequirements: armaSystemRequirements,
+  body: [
+    { type: 'h2', text: 'When you need Cloud DMA' },
+    {
+      type: 'p',
+      text: 'Choose this product when your ARMA REFORGER build lists Cloud DMA as required and you still need the DMA stack itself.',
+    },
+    { type: 'h2', text: 'Pair with ARMA REFORGER cheats' },
+    {
+      type: 'p',
+      text: 'Most players buy the ARMA REFORGER suite first, then confirm DMA hardware separately. Both checkout flows use secure /go/ redirects.',
+    },
+  ],
+  relatedBlogSlugs: productRelatedBlogSlugs['cloud-dma'],
+};
+
+const hwidSpooferPage: ProductPage = {
+  slug: 'hwid-spoofer',
+  kind: 'utility',
+  badge: 'Available',
+  category: 'System utility',
+  name: 'HWID Spoofer',
+  title: 'HWID Spoofer',
+  subtitle: 'Hardware ID tooling for PC',
+  desc: 'HWID spoofer utilities for disk serials, MAC rotation, and identifier cleanup when your PC is flagged—follow the portal guide before launching games.',
+  features: [
+    'Disk serial profiles',
+    'MAC address rotation',
+    'Cleanup utilities',
+    'Compatibility scan',
+    'Post-spoof verification',
+    'Portal walkthrough',
+  ],
+  more: 6,
+  buyUrl: checkoutForSlug('hwid-spoofer'),
+  images: slide('gpMisc', 'gpWorld'),
+  overview: {
+    title: 'Fresh identifier workflow',
+    paragraphs: [
+      'Use HWID tooling when new accounts fail on one PC but work elsewhere—classic hardware enforcement. This is not an account-unban service.',
+      'Restore points, driver cleanup, and cold reboot steps ship in the portal. Run verification before you load ARMA REFORGER modules.',
+    ],
+  },
+  acquisition: {
+    title: 'How to get HWID Spoofer',
+    steps: defaultAcquisitionSteps,
+  },
+  goodToKnow:
+    'Spoofing does not fix reputation-only bans. Pair with new accounts when needed and accept platform risk before use.',
+  limitations:
+    'Improper spoofing can brick network drivers or cause instability. Follow the guide exactly and test in a controlled session first.',
+  fullFeatures: [
+    'Spoofer & cleanup bundle',
+    'Serial profile rotation',
+    'MAC spoof profiles',
+    'Compatibility scan',
+    'Verification checklist',
+    'Portal support channel',
+    'One-click restore notes',
+    'Windows 10/11 support',
+  ],
+  systemRequirements: armaSystemRequirements,
+  body: [
+    { type: 'h2', text: 'When HWID spoofing applies' },
+    {
+      type: 'p',
+      text: 'Hardware bans block fresh logins on the same machine. Spoofing addresses identifiers—not server-side account flags.',
+    },
+    { type: 'h2', text: 'Workflow overview' },
+    {
+      type: 'p',
+      text: 'Create a restore point, run cleanup, apply spoof profiles, reboot, verify identifiers, then load conservative game presets.',
+    },
+  ],
+  relatedBlogSlugs: productRelatedBlogSlugs['hwid-spoofer'],
+};
+
+export const productPages: ProductPage[] = [armaReforgerPage, cloudDmaPage, hwidSpooferPage];
 
 export const cheatPages = productPages.filter((p) => p.kind === 'tier');
 
@@ -297,6 +419,6 @@ export const productHub = {
   title: t.products.title,
   subtitle: t.products.subtitle,
   description:
-    'ARMA REFORGER cheats with aimbot, player ESP, skeleton overlays, config profiles, and Cloud DMA compatibility for PC.',
+    'ARMA REFORGER cheats, Cloud DMA, and HWID Spoofer utilities for PC—with secure checkout on each product card.',
   buyUrl: checkoutPath('armaReforger'),
 };

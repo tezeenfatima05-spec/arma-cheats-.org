@@ -259,7 +259,7 @@ export const en: Translations = {
   products: {
     eyebrow: 'Products',
     title: 'ARMA REFORGER Cheats for PC',
-    subtitle: 'One complete ARMA REFORGER build—aimbot, ESP, misc settings, and configs.',
+    subtitle: 'ARMA REFORGER cheats, Cloud DMA, and HWID Spoofer—each with its own checkout.',
     viewAll: 'View product',
     get: 'Get',
     explore: 'Explore',

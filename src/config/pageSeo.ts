@@ -24,6 +24,16 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     description:
       'Custom aimbot, adaptive FOV, player ESP, health bars, team filters, misc keybinds, and multi-language menu for ARMA REFORGER on PC.',
   },
+  '/products/arma-reforger-cheats/cloud-dma/': {
+    title: 'Cloud DMA for ARMA REFORGER | ARMA Cheats',
+    description:
+      'Cloud DMA compatibility tools and setup guidance for ARMA REFORGER external suites on PC.',
+  },
+  '/products/arma-reforger-cheats/hwid-spoofer/': {
+    title: 'HWID Spoofer Utility | ARMA Cheats',
+    description:
+      'HWID spoofer utilities for identifier cleanup and rotation when your PC needs a fresh hardware profile.',
+  },
   '/blog/': {
     title: 'ARMA REFORGER Guides & Setup Tips',
     description:
