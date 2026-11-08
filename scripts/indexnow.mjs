@@ -1,6 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { getStaticOutputDir } from './dist-output.mjs';
+import { fixDistRedirects } from './fix-dist-redirects.mjs';
+
+function finishBuildRedirects() {
+  fixDistRedirects();
+}
 
 const root = process.cwd();
 const staticDir = getStaticOutputDir();
@@ -9,12 +14,14 @@ const host = process.env.INDEXNOW_HOST?.trim() || 'armacheats.org';
 
 if (!key) {
   console.log('IndexNow: skipped (INDEXNOW_KEY not set).');
+  finishBuildRedirects();
   process.exit(0);
 }
 
 const sitemapPath = path.join(staticDir, 'sitemap.xml');
 if (!fs.existsSync(sitemapPath)) {
   console.warn('IndexNow: dist/sitemap.xml missing — skipping ping.');
+  finishBuildRedirects();
   process.exit(0);
 }
 
@@ -23,6 +30,7 @@ const urlList = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => mat
 
 if (urlList.length === 0) {
   console.warn('IndexNow: no URLs found in sitemap.');
+  finishBuildRedirects();
   process.exit(0);
 }
 
@@ -48,3 +56,5 @@ if (response.ok) {
   const body = await response.text();
   console.warn(`IndexNow: ping failed HTTP ${response.status}: ${body.slice(0, 200)}`);
 }
+
+finishBuildRedirects();

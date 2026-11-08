@@ -9,22 +9,14 @@ export const CHECKOUT_URLS = {
 /** Checkout paths → external product URLs (used by Node serve + Astro middleware). */
 export const CHECKOUT_PATH_REDIRECTS = new Map([
   ['/go/arma-reforger', CHECKOUT_URLS.armaReforger],
-  ['/go/arma-reforger/', CHECKOUT_URLS.armaReforger],
   ['/go/cloud-dma', CHECKOUT_URLS.cloudDma],
-  ['/go/cloud-dma/', CHECKOUT_URLS.cloudDma],
   ['/go/hwid-spoofer', CHECKOUT_URLS.hwidSpoofer],
-  ['/go/hwid-spoofer/', CHECKOUT_URLS.hwidSpoofer],
 ]);
 
 export function resolveCheckoutPathRedirect(pathname) {
-  const direct = CHECKOUT_PATH_REDIRECTS.get(pathname);
-  if (direct) return direct;
-
-  if (pathname !== '/' && !pathname.endsWith('/')) {
-    return CHECKOUT_PATH_REDIRECTS.get(`${pathname}/`) ?? null;
-  }
-
-  return null;
+  let key = pathname;
+  if (key.length > 1 && key.endsWith('/')) key = key.slice(0, -1);
+  return CHECKOUT_PATH_REDIRECTS.get(key) ?? null;
 }
 
 /**
@@ -32,7 +24,7 @@ export function resolveCheckoutPathRedirect(pathname) {
  * Workers treats `/go/x` and `/go/x/` as the same path (duplicate if both appear).
  */
 export function checkoutRedirectsFileLines() {
-  return [...CHECKOUT_PATH_REDIRECTS.entries()]
-    .filter(([route]) => !route.endsWith('/'))
-    .map(([route, destination]) => `${route}  ${destination}  302`);
+  return [...CHECKOUT_PATH_REDIRECTS.entries()].map(
+    ([route, destination]) => `${route}  ${destination}  302`,
+  );
 }
