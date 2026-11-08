@@ -3,25 +3,31 @@ import path from 'node:path';
 import { getStaticOutputDir } from './dist-output.mjs';
 import { fixDistRedirects } from './fix-dist-redirects.mjs';
 
-function finishBuildRedirects() {
-  fixDistRedirects();
-}
-
-const root = process.cwd();
 const staticDir = getStaticOutputDir();
 const key = process.env.INDEXNOW_KEY?.trim();
 const host = process.env.INDEXNOW_HOST?.trim() || 'armacheats.org';
 
+function finishWorkersRedirects() {
+  fixDistRedirects();
+  const redirectsPath = path.join(staticDir, '_redirects');
+  const body = fs.readFileSync(redirectsPath, 'utf8');
+  const goCount = (body.match(/^\/go\//gm) ?? []).length;
+  if (goCount !== 3) {
+    console.error(`[build] FATAL: dist _redirects has ${goCount} /go rules (want 3). Deploy aborted.`);
+    process.exit(1);
+  }
+}
+
 if (!key) {
   console.log('IndexNow: skipped (INDEXNOW_KEY not set).');
-  finishBuildRedirects();
+  finishWorkersRedirects();
   process.exit(0);
 }
 
 const sitemapPath = path.join(staticDir, 'sitemap.xml');
 if (!fs.existsSync(sitemapPath)) {
   console.warn('IndexNow: dist/sitemap.xml missing — skipping ping.');
-  finishBuildRedirects();
+  finishWorkersRedirects();
   process.exit(0);
 }
 
@@ -30,7 +36,7 @@ const urlList = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => mat
 
 if (urlList.length === 0) {
   console.warn('IndexNow: no URLs found in sitemap.');
-  finishBuildRedirects();
+  finishWorkersRedirects();
   process.exit(0);
 }
 
@@ -57,4 +63,4 @@ if (response.ok) {
   console.warn(`IndexNow: ping failed HTTP ${response.status}: ${body.slice(0, 200)}`);
 }
 
-finishBuildRedirects();
+finishWorkersRedirects();

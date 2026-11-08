@@ -2,6 +2,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
 
+for (const rel of ['dist/client/_redirects', 'dist/_redirects']) {
+  const stale = path.join(process.cwd(), rel);
+  if (!fs.existsSync(stale)) continue;
+  fs.unlinkSync(stale);
+  console.log(`[build] Removed stale ${rel} (pre-astro)`);
+}
+
 const root = process.cwd();
 const source = path.join(root, 'assets', 'arma-reforger-brand.png');
 const publicDir = path.join(root, 'public');
