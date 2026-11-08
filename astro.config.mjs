@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import cloudflare from '@astrojs/cloudflare';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import { sitemapSerialize } from './src/config/sitemap.ts';
@@ -9,6 +10,8 @@ const siteOrigin = (process.env.PUBLIC_SITE_ORIGIN || 'https://armacheats.org').
 
 export default defineConfig({
   site: siteOrigin,
+  output: 'static',
+  adapter: cloudflare(),
   trailingSlash: 'always',
   redirects: {
     '/cheats/': '/products/arma-reforger-cheats/',

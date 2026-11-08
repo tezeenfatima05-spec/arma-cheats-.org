@@ -17,7 +17,9 @@ for (const file of targets) {
   for (const line of lines) {
     const trimmed = line.trim();
     if (!trimmed) continue;
-    const pathKey = trimmed.split(/\s+/)[0];
+    const rawPath = trimmed.split(/\s+/)[0] ?? '';
+    const pathKey =
+      rawPath.length > 1 && rawPath.endsWith('/') ? rawPath.slice(0, -1) : rawPath;
     if (seen.has(pathKey)) continue;
     seen.add(pathKey);
     kept.push(trimmed);

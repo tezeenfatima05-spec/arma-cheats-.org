@@ -1,12 +1,6 @@
-import fs from 'node:fs';
-import path from 'node:path';
+/** Checkout redirects are written post-build via scripts/write-dist-redirects.mjs (not public/). */
 import { checkoutRedirectsFileLines } from '../src/config/checkout-redirects.mjs';
 
-const target = path.join(process.cwd(), 'public', '_redirects');
-const lines = checkoutRedirectsFileLines();
-const body = `${lines.join('\n')}\n`;
-
-if (!fs.existsSync(target) || fs.readFileSync(target, 'utf8') !== body) {
-  fs.writeFileSync(target, body, 'utf8');
-  console.log(`Wrote ${lines.length} checkout redirect(s) → public/_redirects`);
-}
+console.log(
+  `Checkout redirects: ${checkoutRedirectsFileLines().length} rule(s) (applied after astro build)`,
+);

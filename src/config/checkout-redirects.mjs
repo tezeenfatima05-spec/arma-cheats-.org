@@ -28,11 +28,11 @@ export function resolveCheckoutPathRedirect(pathname) {
 }
 
 /**
- * Cloudflare `_redirects` only (do not also add these in astro.config — the
- * Cloudflare adapter merges both into dist and rejects duplicate paths).
+ * Cloudflare `_redirects` — one rule per path without trailing slash.
+ * Workers treats `/go/x` and `/go/x/` as the same path (duplicate if both appear).
  */
 export function checkoutRedirectsFileLines() {
-  return [...CHECKOUT_PATH_REDIRECTS.entries()].map(
-    ([route, destination]) => `${route}  ${destination}  302`,
-  );
+  return [...CHECKOUT_PATH_REDIRECTS.entries()]
+    .filter(([route]) => !route.endsWith('/'))
+    .map(([route, destination]) => `${route}  ${destination}  302`);
 }
