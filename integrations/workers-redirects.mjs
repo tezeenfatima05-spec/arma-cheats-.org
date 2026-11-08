@@ -1,15 +1,4 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import { fixDistRedirects } from '../scripts/fix-dist-redirects.mjs';
-
-function removeStaleDistRedirects() {
-  for (const rel of ['dist/client/_redirects', 'dist/_redirects']) {
-    const file = path.join(process.cwd(), rel);
-    if (!fs.existsSync(file)) continue;
-    fs.unlinkSync(file);
-    console.log(`[build] Removed stale ${rel} (astro hook)`);
-  }
-}
+import { wipeDistOutput, writeWorkersRedirectsOnly } from '../scripts/workers-redirects-body.mjs';
 
 /** Runs inside `astro build` so Wrangler cannot skip it when it overwrites package.json. */
 export default function workersRedirectsIntegration() {
@@ -17,10 +6,10 @@ export default function workersRedirectsIntegration() {
     name: '@site/workers-redirects',
     hooks: {
       'astro:build:start': () => {
-        removeStaleDistRedirects();
+        wipeDistOutput();
       },
       'astro:build:done': () => {
-        fixDistRedirects();
+        writeWorkersRedirectsOnly();
       },
     },
   };

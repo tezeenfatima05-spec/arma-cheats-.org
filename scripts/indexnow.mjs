@@ -1,20 +1,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { getStaticOutputDir } from './dist-output.mjs';
-import { fixDistRedirects } from './fix-dist-redirects.mjs';
+import { writeWorkersRedirectsOnly } from './workers-redirects-body.mjs';
 
 const staticDir = getStaticOutputDir();
 const key = process.env.INDEXNOW_KEY?.trim();
 const host = process.env.INDEXNOW_HOST?.trim() || 'armacheats.org';
 
 function finishWorkersRedirects() {
-  fixDistRedirects();
-  const redirectsPath = path.join(staticDir, '_redirects');
-  const body = fs.readFileSync(redirectsPath, 'utf8');
-  if (/^\/go\//m.test(body)) {
-    console.error('[build] FATAL: _redirects still contains /go rules. Deploy aborted.');
-    process.exit(1);
-  }
+  writeWorkersRedirectsOnly();
 }
 
 if (!key) {

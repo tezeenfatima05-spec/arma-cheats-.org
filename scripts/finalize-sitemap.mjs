@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { findSitemap0Path, getStaticOutputDir } from './dist-output.mjs';
 import { SITE_ORIGIN } from '../src/config/site-origin.mjs';
-import { fixDistRedirects } from './fix-dist-redirects.mjs';
+import { writeWorkersRedirectsOnly } from './workers-redirects-body.mjs';
 
 const staticDir = getStaticOutputDir();
 const source = findSitemap0Path();
@@ -55,4 +55,4 @@ fs.writeFileSync(path.join(staticDir, 'sitemap-0.xml'), formatted, 'utf8');
 
 console.log(`Sitemap finalized: ${urlCount} URLs → ${path.relative(process.cwd(), staticDir)}/sitemap.xml`);
 
-fixDistRedirects();
+writeWorkersRedirectsOnly();

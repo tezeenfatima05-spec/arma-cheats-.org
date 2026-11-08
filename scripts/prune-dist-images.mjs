@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { getDistRoot, getStaticOutputDir } from './dist-output.mjs';
-import { fixDistRedirects } from './fix-dist-redirects.mjs';
+import { writeWorkersRedirectsOnly } from './workers-redirects-body.mjs';
 
 /** Drop source PNGs from dist — pages serve WebP variants only. */
 const imageDirs = [
@@ -36,4 +36,4 @@ console.log(
   `Pruned ${removed} source PNG(s) from dist/images (${(bytes / 1024 / 1024).toFixed(1)} MB).`,
 );
 
-fixDistRedirects();
+writeWorkersRedirectsOnly();
