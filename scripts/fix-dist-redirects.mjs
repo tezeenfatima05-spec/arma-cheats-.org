@@ -1,10 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { checkoutRedirectsFileLines } from '../src/config/checkout-redirects.mjs';
 import { getStaticOutputDir } from './dist-output.mjs';
 
-/** Astro + Workers: legacy path redirects (301). */
+/** Site 301s only — checkout uses public/go HTML pages (no /go in _redirects). */
 const SITE_REDIRECTS = [
   '/contact/           /support/                                        301',
   '/cheats/            /products/arma-reforger-cheats/                  301',
@@ -20,11 +19,10 @@ function redirectPathKey(line) {
   return rawPath;
 }
 
-/** Overwrite Workers _redirects — never merge cached duplicates. */
 export function fixDistRedirects() {
   const staticDir = getStaticOutputDir();
   const target = path.join(staticDir, '_redirects');
-  const lines = [...SITE_REDIRECTS, ...checkoutRedirectsFileLines()];
+  const lines = [...SITE_REDIRECTS];
 
   const seen = new Set();
   for (const line of lines) {
@@ -36,18 +34,17 @@ export function fixDistRedirects() {
     seen.add(key);
   }
 
+  const body = lines.join('\n') + '\n';
   fs.mkdirSync(path.dirname(target), { recursive: true });
-  const stamp = `# workers-build ${Date.now()}\n`;
-  fs.writeFileSync(target, `${stamp}${lines.join('\n')}\n`, 'utf8');
+  fs.writeFileSync(target, body, 'utf8');
 
-  const goRules = lines.filter((line) => line.trimStart().startsWith('/go/'));
-  if (goRules.length !== 3) {
-    console.error(`[build] ERROR: expected 3 /go rules, got ${goRules.length}`);
+  if (/^\/go\//m.test(body)) {
+    console.error('[build] ERROR: /go rules must not be in Workers _redirects');
     process.exit(1);
   }
 
   console.log(
-    `[build] Wrote Workers _redirects: ${lines.length} rule(s) → ${path.relative(process.cwd(), target)}`,
+    `[build] Wrote Workers _redirects: ${lines.length} rule(s) (no /go) → ${path.relative(process.cwd(), target)}`,
   );
 }
 

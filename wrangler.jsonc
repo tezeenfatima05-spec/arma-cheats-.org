@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  // Workers Builds deploy command: `npm run deploy` (recommended). Bare `npx wrangler deploy` also works after astro hook fix.
+  // Workers Builds deploy command: `npm run deploy` (recommended).
   "name": "arma-cheats--org",
   "compatibility_date": "2025-03-01",
   "assets": {

@@ -11,9 +11,8 @@ function finishWorkersRedirects() {
   fixDistRedirects();
   const redirectsPath = path.join(staticDir, '_redirects');
   const body = fs.readFileSync(redirectsPath, 'utf8');
-  const goCount = (body.match(/^\/go\//gm) ?? []).length;
-  if (goCount !== 3) {
-    console.error(`[build] FATAL: dist _redirects has ${goCount} /go rules (want 3). Deploy aborted.`);
+  if (/^\/go\//m.test(body)) {
+    console.error('[build] FATAL: _redirects still contains /go rules. Deploy aborted.');
     process.exit(1);
   }
 }

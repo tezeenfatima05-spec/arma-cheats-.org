@@ -2,7 +2,7 @@ import { spawnSync } from 'node:child_process';
 
 const steps = [
   'node scripts/clean-stale-dist-redirects.mjs',
-  'node scripts/sync-checkout-redirects.mjs',
+  'node scripts/write-go-redirect-pages.mjs',
   'node scripts/import-arma-brand-icon.mjs',
   'node scripts/optimize-images.mjs',
   'npx astro build',
