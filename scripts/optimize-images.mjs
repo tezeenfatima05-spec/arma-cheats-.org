@@ -4,6 +4,7 @@ import sharp from 'sharp';
 
 const root = process.cwd();
 const widths = [320, 400, 512, 640, 960];
+const VARIANT_SUFFIX = new RegExp(`-(?:${widths.join('|')})\\.webp$`, 'i');
 const dirs = [
   'public/images/gameplay',
   'public/images/blog',
@@ -13,11 +14,14 @@ async function optimizeDir(relativeDir) {
   const dir = path.join(root, relativeDir);
   if (!fs.existsSync(dir)) return;
 
-  const files = fs.readdirSync(dir).filter((file) => /\.png$/i.test(file) && !/-\d+\.webp$/i.test(file));
+  const files = fs.readdirSync(dir).filter((file) => {
+    if (VARIANT_SUFFIX.test(file)) return false;
+    return /\.(png|jpe?g|webp)$/i.test(file);
+  });
 
   for (const file of files) {
     const input = path.join(dir, file);
-    const base = file.replace(/\.png$/i, '');
+    const base = file.replace(/\.(png|jpe?g|webp)$/i, '');
 
     for (const width of widths) {
       const output = path.join(dir, `${base}-${width}.webp`);

@@ -54,4 +54,10 @@ await transparent
   .png()
   .toFile(path.join(publicDir, 'favicon.ico'));
 
+await transparent
+  .clone()
+  .resize(128, 128, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+  .webp({ quality: 90 })
+  .toFile(path.join(publicDir, 'logo.webp'));
+
 console.log('ARMA brand icons written (transparent background):', masterPath);

@@ -10,7 +10,7 @@ export const CTA_URL =
   'https://zadeyo.com/go/TAZEEN?to=%2Fproducts%2Farma-reforger';
 
 export const ASSETS = {
-  logo: '/logo.webp',
+  logo: '/arma-brand-logo.png',
   heroPoster: '/images/gameplay/hero-poster.webp',
   screenshots: [
     '/images/gameplay/screenshot-1.webp',

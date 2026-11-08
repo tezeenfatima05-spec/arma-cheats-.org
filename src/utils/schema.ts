@@ -40,7 +40,7 @@ export function organizationSchema() {
     '@type': 'Organization',
     name: 'ARMA Cheats',
     url: `${SITE_ORIGIN}/`,
-    logo: `${SITE_ORIGIN}/logo.webp`,
+    logo: `${SITE_ORIGIN}/arma-brand-logo.png`,
     email: SUPPORT_EMAIL,
     ...(sameAs.length > 0 ? { sameAs } : {}),
     contactPoint: [
@@ -216,7 +216,7 @@ export function articleSchema(input: {
       name: 'ARMA Cheats',
       logo: {
         '@type': 'ImageObject',
-        url: `${SITE_ORIGIN}/logo.svg`,
+        url: `${SITE_ORIGIN}/arma-brand-logo.png`,
       },
     },
     mainEntityOfPage: {
