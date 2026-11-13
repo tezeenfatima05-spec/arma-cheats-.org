@@ -23,3 +23,4 @@ run(process.execPath, [path.join(root, 'scripts', 'assert-workers-redirects.mjs'
 
 const wranglerBin = path.join(root, 'node_modules', 'wrangler', 'bin', 'wrangler.js');
 run(process.execPath, [wranglerBin, 'deploy', '--config', path.join(root, 'wrangler.jsonc')]);
+run(process.execPath, [path.join(root, 'scripts', 'validate-sitemap-live.mjs')]);

@@ -36,7 +36,11 @@ export default defineConfig({
   integrations: [
     workersRedirects(),
     sitemap({
-      filter: (page) => !page.includes('/404') && !page.includes('/go/'),
+      filter: (page) =>
+        !page.includes('/404') &&
+        !page.includes('/go/') &&
+        !page.includes('/cheats/') &&
+        !page.includes('/contact/'),
       serialize: sitemapSerialize,
     }),
   ],

@@ -42,31 +42,6 @@ for (const file of walk(staticDir)) {
   }
 }
 
-const sitemapPath = path.join(staticDir, 'sitemap.xml');
-if (fs.existsSync(sitemapPath)) {
-  const sitemap = fs.readFileSync(sitemapPath, 'utf8');
-  const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-  for (const loc of locs) {
-    if (!loc.startsWith(`${PRODUCTION_ORIGIN}/`) && loc !== `${PRODUCTION_ORIGIN}/`) {
-      violations.push(`sitemap.xml: unexpected loc ${loc}`);
-    }
-    if (/workers/i.test(loc)) {
-      violations.push(`sitemap.xml: workers in loc ${loc}`);
-    }
-  }
-}
-
-const robotsPath = path.join(staticDir, 'robots.txt');
-if (fs.existsSync(robotsPath)) {
-  const robots = fs.readFileSync(robotsPath, 'utf8');
-  const expected = `Sitemap: ${PRODUCTION_ORIGIN}/sitemap.xml`;
-  if (!robots.includes(expected)) {
-    violations.push(`robots.txt: missing "${expected}"`);
-  }
-  if (/workers/i.test(robots)) {
-    violations.push('robots.txt: contains workers');
-  }
-}
 
 if (violations.length > 0) {
   console.error('[audit] Production URL audit failed:\n' + violations.join('\n'));
