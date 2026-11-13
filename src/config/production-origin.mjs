@@ -9,6 +9,12 @@ const BLOCKED_HOST =
  * @param {string | undefined} envValue PUBLIC_SITE_ORIGIN from CI (optional)
  * @returns {string}
  */
+/** @param {string | undefined} envValue */
+export function resolveDevSiteOrigin(envValue, fallback = 'http://localhost:3000') {
+  const trimmed = envValue?.trim().replace(/\/$/, '');
+  return trimmed || fallback;
+}
+
 export function resolvePublicSiteOrigin(envValue) {
   const trimmed = envValue?.trim().replace(/\/$/, '');
   if (!trimmed) return PRODUCTION_ORIGIN;
