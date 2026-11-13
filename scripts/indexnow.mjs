@@ -5,7 +5,9 @@ import { writeWorkersRedirectsOnly } from './workers-redirects-body.mjs';
 
 const staticDir = getStaticOutputDir();
 const key = process.env.INDEXNOW_KEY?.trim();
-const host = process.env.INDEXNOW_HOST?.trim() || 'armacheats.org';
+import { PRODUCTION_HOST } from '../src/config/production-origin.mjs';
+
+const host = process.env.INDEXNOW_HOST?.trim() || PRODUCTION_HOST;
 
 function finishWorkersRedirects() {
   writeWorkersRedirectsOnly();

@@ -1,6 +1,7 @@
 import type { SitemapItem } from '@astrojs/sitemap';
 import { blogPosts } from '../data/blog';
 import { parseBlogDate } from '../utils/schema';
+import { SITE_ORIGIN } from './seo';
 
 const buildDate = new Date().toISOString();
 
@@ -20,6 +21,7 @@ export function sitemapSerialize(item: SitemapItem): SitemapItem | undefined {
     return undefined;
   }
 
+  item.url = `${SITE_ORIGIN}${path}`;
   item.lastmod = buildDate;
 
   if (path === '/') {

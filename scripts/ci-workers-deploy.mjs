@@ -10,6 +10,8 @@ import { writeWorkersRedirectsOnly } from './workers-redirects-body.mjs';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 
+process.env.PUBLIC_SITE_ORIGIN = 'https://armacheats.org';
+
 function run(cmd, args) {
   const result = spawnSync(cmd, args, { cwd: root, stdio: 'inherit', shell: false });
   if (result.status !== 0) process.exit(result.status ?? 1);

@@ -1,4 +1,5 @@
-/** Build-time site origin (set PUBLIC_SITE_ORIGIN on Workers preview). */
-export const SITE_ORIGIN = (
-  process.env.PUBLIC_SITE_ORIGIN || 'https://armacheats.org'
-).replace(/\/$/, '');
+import { resolvePublicSiteOrigin, PRODUCTION_ORIGIN } from './production-origin.mjs';
+
+export const SITE_ORIGIN = resolvePublicSiteOrigin(process.env.PUBLIC_SITE_ORIGIN);
+
+export { PRODUCTION_ORIGIN };

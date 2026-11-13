@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 /** Cloudflare Workers Static Assets `_redirects` — never put /go checkout here. */
-export const WORKERS_REDIRECTS_BODY = `# armacheats-workers-redirects-v2
+export const WORKERS_REDIRECTS_BODY = `# armacheats-redirects-v2
 /contact/           /support/                                        301
 /cheats/            /products/arma-reforger-cheats/                  301
 /cheats/pro/        /products/arma-reforger-cheats/                  301

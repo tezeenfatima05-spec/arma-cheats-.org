@@ -10,6 +10,7 @@ const steps = [
   'node scripts/finalize-sitemap.mjs',
   'node scripts/indexnow.mjs',
   'node scripts/fix-dist-redirects.mjs',
+  'node scripts/audit-production-urls.mjs',
 ];
 
 for (const step of steps) {

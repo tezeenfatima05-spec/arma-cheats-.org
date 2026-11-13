@@ -4,10 +4,9 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import { sitemapSerialize } from './src/config/sitemap.ts';
 import workersRedirects from './integrations/workers-redirects.mjs';
-const siteOrigin = (process.env.PUBLIC_SITE_ORIGIN || 'https://armacheats.org').replace(
-  /\/$/,
-  '',
-);
+import { resolvePublicSiteOrigin } from './src/config/production-origin.mjs';
+
+const siteOrigin = resolvePublicSiteOrigin(process.env.PUBLIC_SITE_ORIGIN);
 
 export default defineConfig({
   site: siteOrigin,
@@ -43,6 +42,9 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+    define: {
+      'import.meta.env.PUBLIC_SITE_ORIGIN': JSON.stringify(siteOrigin),
+    },
     build: {
       cssMinify: true,
       minify: 'esbuild',
