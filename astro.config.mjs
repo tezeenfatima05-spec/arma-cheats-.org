@@ -42,7 +42,10 @@ export default defineConfig(({ command }) => {
     },
     server: {
       port: DEV_PORT,
-      host: DEV_HOST === '0.0.0.0' ? true : DEV_HOST,
+      host:
+        DEV_HOST === '0.0.0.0'
+          ? true
+          : DEV_HOST,
     },
     integrations: [
       workersRedirects(),

@@ -24,7 +24,7 @@ export const en: Translations = {
     status: 'ARMA REFORGER — build online',
     eyebrow: 'PC tactical suite',
     titleLine1: 'ARMA REFORGER',
-    titleLine2: 'Cheats for PC — Aimbot, Player ESP & Wallhack',
+    titleLine2: 'ARMA REFORGER Cheats for PC — Aimbot, Player ESP & Wallhack',
     subtitle:
       'Customizable aimbot, player ESP, skeleton overlays, and config tools for ARMA REFORGER multiplayer on PC—with Cloud DMA compatibility and multi-language menu support.',
     ctaPrimary: 'View products',

@@ -7,7 +7,7 @@ const hostFlag =
   DEV_HOST === '0.0.0.0' || DEV_HOST === 'true' ? '0.0.0.0' : DEV_HOST;
 const result = spawnSync(
   'npx',
-  ['astro', 'dev', '--host', hostFlag, '--port', String(DEV_PORT)],
+  ['astro', 'dev', '--force', '--host', hostFlag, '--port', String(DEV_PORT)],
   { stdio: 'inherit', shell: true },
 );
 process.exit(result.status ?? 1);

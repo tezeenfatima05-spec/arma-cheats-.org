@@ -23,8 +23,8 @@ function loadEnvFile() {
 
 loadEnvFile();
 
-/** Local dev server — override with PORT and/or DEV_ORIGIN in .env */
-export const DEV_PORT = Number(process.env.PORT) || 4321;
+/** Local dev — port 7847 avoids clashes with 3000/4321/5173 on other sites. Override via .env */
+export const DEV_PORT = Number(process.env.PORT) || 7847;
 export const DEV_HOST = process.env.HOST?.trim() || '127.0.0.1';
 
 const raw = process.env.DEV_ORIGIN?.trim().replace(/\/$/, '');

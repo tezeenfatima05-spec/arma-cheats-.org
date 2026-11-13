@@ -9,7 +9,7 @@ import {
 
 const envOrigin = import.meta.env.PUBLIC_SITE_ORIGIN as string | undefined;
 export const SITE_ORIGIN = import.meta.env.DEV
-  ? resolveDevSiteOrigin(envOrigin, 'http://127.0.0.1:4321')
+  ? resolveDevSiteOrigin(envOrigin, 'http://127.0.0.1:7847')
   : resolvePublicSiteOrigin(envOrigin) || SITE_URL || PRODUCTION_ORIGIN;
 
 export const DEFAULT_OG_IMAGE = '/images/gameplay/hero-poster.webp';
