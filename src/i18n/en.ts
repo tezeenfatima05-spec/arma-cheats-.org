@@ -22,20 +22,20 @@ export const en: Translations = {
   ],
   hero: {
     status: 'ARMA REFORGER — build online',
-    eyebrow: 'PC tactical suite',
+    eyebrow: '#1 Undetected Provider',
     titleLine1: 'ARMA REFORGER',
-    titleLine2: 'ARMA REFORGER Cheats for PC — Aimbot, Player ESP & Wallhack',
+    titleLine2: 'Cheats for PC',
     subtitle:
-      'Customizable aimbot, player ESP, skeleton overlays, and config tools for ARMA REFORGER multiplayer on PC—with Cloud DMA compatibility and multi-language menu support.',
+      'ARMA REFORGER cheats with aimbot, player ESP, wallhack, and config tools for PC multiplayer on Steam—preset configs, Cloud DMA options, and support at armacheats.org.',
     ctaPrimary: 'View products',
     ctaDiscord: 'Buy now',
     modesLabel: 'ARMA REFORGER modes',
     modes: ['Conflict', 'Combat Ops', 'Seize', 'Multiplayer'],
     metrics: [
-      { label: 'Aimbot bones', strong: '4' },
-      { label: 'Languages', strong: 'EN/RU/CN' },
-      { label: 'ESP styles', strong: '2' },
-      { label: 'Config slots', strong: 'Yes' },
+      { label: 'Stream-safe', strong: 'Yes' },
+      { label: 'Patch speed', strong: '<24h' },
+      { label: 'Users', strong: '300+' },
+      { label: 'Live support', strong: '24/7' },
     ],
   },
   features: {
