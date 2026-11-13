@@ -60,6 +60,14 @@ export default defineConfig(({ command }) => {
     ],
     vite: {
       plugins: [tailwindcss()],
+      server: {
+        warmup: {
+          clientFiles: ['./src/components/icons/registry.ts'],
+        },
+      },
+      optimizeDeps: {
+        exclude: ['@lucide/astro'],
+      },
       define: {
         'import.meta.env.PUBLIC_SITE_ORIGIN': JSON.stringify(siteOrigin),
       },
