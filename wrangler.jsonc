@@ -1,9 +1,11 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  // Workers Builds deploy command: `npm run workers:deploy` (NOT bare `npx wrangler deploy`).
+  // Workers Builds: `npm run workers:deploy` — static assets only (no Astro server worker).
   "name": "arma-cheats--org",
   "compatibility_date": "2025-03-01",
   "assets": {
-    "directory": "./dist/client"
+    "directory": "./dist/client",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
   }
 }

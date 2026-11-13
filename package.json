@@ -13,6 +13,7 @@
     "postbuild": "node scripts/fix-dist-redirects.mjs",
     "workers:deploy": "node scripts/ci-workers-deploy.mjs",
     "deploy": "npm run workers:deploy",
+    "predeploy": "node scripts/prepare-wrangler-deploy.mjs",
     "prebuild": "node scripts/clean-stale-dist-redirects.mjs",
     "preview": "astro preview --host 0.0.0.0",
     "start": "node scripts/serve.mjs",

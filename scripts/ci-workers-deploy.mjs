@@ -20,6 +20,7 @@ function run(cmd, args) {
 run(process.execPath, [path.join(root, 'scripts', 'build-for-workers.mjs')]);
 writeWorkersRedirectsOnly();
 run(process.execPath, [path.join(root, 'scripts', 'assert-workers-redirects.mjs')]);
+run(process.execPath, [path.join(root, 'scripts', 'prepare-wrangler-deploy.mjs')]);
 
 const wranglerBin = path.join(root, 'node_modules', 'wrangler', 'bin', 'wrangler.js');
 run(process.execPath, [wranglerBin, 'deploy', '--config', path.join(root, 'wrangler.jsonc')]);

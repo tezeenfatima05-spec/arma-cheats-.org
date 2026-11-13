@@ -11,7 +11,10 @@ const siteOrigin = resolvePublicSiteOrigin(process.env.PUBLIC_SITE_ORIGIN);
 export default defineConfig({
   site: siteOrigin,
   output: 'static',
-  adapter: cloudflare(),
+  session: false,
+  adapter: cloudflare({
+    imageService: 'compile',
+  }),
   trailingSlash: 'always',
   redirects: {
     '/cheats/': '/products/arma-reforger-cheats/',
