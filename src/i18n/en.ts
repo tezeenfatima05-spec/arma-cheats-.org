@@ -40,7 +40,7 @@ export const en: Translations = {
   },
   features: {
     eyebrow: 'Features',
-    title: 'Everything in one tactical package',
+    title: 'Everything you need in one package',
     subtitle: 'Aimbot, player visuals, and misc tools organized for ARMA REFORGER PvP.',
     items: [
       {

@@ -7,8 +7,9 @@ import { Badge } from '@/components/starwind/badge';
 
 const s = t.features;
 
-function isScriptsHero(title: string) {
-  return title === 'Scripts';
+/** Template highlights the first bento card (Dota “Scripts”, ARMA “Aimbot Options”). */
+function isFeaturedBentoHero(index: number) {
+  return index === 0;
 }
 ---
 
@@ -20,8 +21,8 @@ function isScriptsHero(title: string) {
       class="features-bento mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-12 lg:grid-rows-[repeat(6,auto)] lg:items-stretch lg:gap-4"
     >
       {
-        s.items.map((item) => {
-          const scriptsHero = isScriptsHero(item.title);
+        s.items.map((item, index) => {
+          const scriptsHero = isFeaturedBentoHero(index);
           return (
             <article
               class:list={[

@@ -1,6 +1,15 @@
 import type { IconName } from '../components/icons/types';
 
 export const featureIcons: Record<string, IconName> = {
+  'Aimbot Options': 'featureAimbot',
+  'Player Visual Options': 'featureEsp',
+  'Soldier intel': 'featureRadar',
+  'Misc Options': 'featureUtilitySuite',
+  'Config manager': 'toolkitProfiles',
+  'Cloud DMA': 'dmaHardware',
+  'FOV drawing': 'crosshair',
+  Performance: 'heroStatClock',
+  'On-page guides': 'navBlog',
   Scripts: 'stepCrosshair',
   'Map Hack / ESP': 'featureEsp',
   'Minimap & Runes': 'featureRadar',

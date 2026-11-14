@@ -48,6 +48,14 @@ function localize(source) {
       .replace(/\r?\n@import "\.\/global\.css";\s*$/u, '\n')
       // Master game sites (BattleBit / ARMA) use a two-line hero headline; NOT-OPTIMISED barrel is single-line.
       .replace(
+        /function isScriptsHero\(title: string\) \{\r?\n\s*return title === 'Scripts';\r?\n\}/,
+        `function isFeaturedBentoHero(index: number) {\n  return index === 0;\n}`,
+      )
+      .replace(
+        /s\.items\.map\(\(item\) => \{\r?\n\s*const scriptsHero = isScriptsHero\(item\.title\);/,
+        's.items.map((item, index) => {\n          const scriptsHero = isFeaturedBentoHero(index);',
+      )
+      .replace(
         /<h1 id="hero-title" class="text-4xl font-bold uppercase leading-tight md:text-5xl">\r?\n\s*<span class="block text-primary">\{h\.titleLine2\}<\/span>\r?\n\s*<\/h1>/,
         `<h1 id="hero-title" class="text-4xl font-bold uppercase leading-tight md:text-5xl">
           <span class="block text-foreground">{h.titleLine1}</span>
