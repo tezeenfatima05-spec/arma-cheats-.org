@@ -1,8 +1,14 @@
 # Legacy checkout redirects — must never ship to Workers Static Assets
 public/_redirects
 
+# template reference clones (never commit other games)
+_ref_NOT_OPTIMISED/
+.ref-sync/
+_ref.zip
+
 # build output
 dist/
+wrangler.deploy.jsonc
 .wrangler/
 # generated types
 .astro/

@@ -5,23 +5,73 @@ import {
   PRODUCTION_ORIGIN,
   rewriteAbsoluteUrlsInXml,
 } from '../src/config/production-origin.mjs';
+import { collectCanonicalUrls } from './sitemap-validate-lib.mjs';
 import { writeWorkersRedirectsOnly } from './workers-redirects-body.mjs';
 
 const staticDir = getStaticOutputDir();
 const source = findSitemap0Path();
+const lastmod = new Date().toISOString().slice(0, 10);
 
-if (!source) {
-  console.error(
-    'finalize-sitemap: sitemap-0.xml not found under dist/ or dist/client/ — run astro build first.',
-  );
-  process.exit(1);
+function sitemapMetaForPath(pathname) {
+  if (pathname === '/') return { priority: '1.0', changefreq: 'weekly' };
+  if (pathname === '/blog/') return { priority: '0.9', changefreq: 'weekly' };
+  if (pathname === '/forum/') return { priority: '0.8', changefreq: 'daily' };
+  if (pathname.startsWith('/forum/')) return { priority: '0.6', changefreq: 'weekly' };
+  if (pathname.startsWith('/blog/')) return { priority: '0.7', changefreq: 'monthly' };
+  if (pathname.startsWith('/products/')) return { priority: '0.8', changefreq: 'weekly' };
+  if (
+    pathname === '/about/' ||
+    pathname === '/support/' ||
+    pathname === '/privacy/' ||
+    pathname === '/terms/' ||
+    pathname === '/faq/'
+  ) {
+    return { priority: '0.5', changefreq: 'yearly' };
+  }
+  return { priority: '0.6', changefreq: 'monthly' };
 }
 
-const raw = fs.readFileSync(source, 'utf8');
+/** Build urlset XML when @astrojs/sitemap did not emit sitemap-0.xml (always armacheats.org). */
+function buildUrlsetFromCanonicals(canonicals) {
+  const sorted = [...canonicals].sort();
+  const urls = sorted
+    .map((loc) => {
+      const pathname = new URL(loc).pathname;
+      const { priority, changefreq } = sitemapMetaForPath(pathname);
+      return `  <url>
+    <loc>${loc}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>
+`;
+    })
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.join('')}
+</urlset>
+`;
+}
+
+let raw;
+if (source) {
+  raw = fs.readFileSync(source, 'utf8');
+} else {
+  console.warn(
+    '[finalize-sitemap] sitemap-0.xml missing — generating from built page canonicals (armacheats.org only).',
+  );
+  const canonicals = collectCanonicalUrls(staticDir);
+  if (canonicals.size === 0) {
+    console.error('finalize-sitemap: no canonical URLs found in dist HTML.');
+    process.exit(1);
+  }
+  raw = buildUrlsetFromCanonicals(canonicals);
+}
+
 const urlCount = (raw.match(/<url>/g) ?? []).length;
 
 if (urlCount === 0) {
-  console.error('finalize-sitemap: sitemap-0.xml contains no URLs.');
+  console.error('finalize-sitemap: sitemap contains no URLs.');
   process.exit(1);
 }
 
@@ -50,13 +100,15 @@ const indexXml = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc>${PRODUCTION_ORIGIN}/sitemap.xml</loc>
-    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>
+    <lastmod>${lastmod}</lastmod>
   </sitemap>
 </sitemapindex>
 `;
 fs.writeFileSync(path.join(staticDir, 'sitemap-index.xml'), indexXml, 'utf8');
 fs.writeFileSync(path.join(staticDir, 'sitemap-0.xml'), formatted, 'utf8');
 
-console.log(`Sitemap finalized: ${urlCount} URLs → ${path.relative(process.cwd(), staticDir)}/sitemap.xml`);
+console.log(
+  `Sitemap finalized: ${urlCount} URLs → ${path.relative(process.cwd(), staticDir)}/sitemap.xml (${PRODUCTION_ORIGIN})`,
+);
 
 writeWorkersRedirectsOnly();

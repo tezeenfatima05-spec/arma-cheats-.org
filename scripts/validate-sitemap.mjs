@@ -17,7 +17,9 @@ const errors = [];
 
 const sitemapPath = path.join(staticDir, 'sitemap.xml');
 if (!fs.existsSync(sitemapPath)) {
-  console.error('[sitemap] FATAL: dist/client/sitemap.xml missing — run astro build first.');
+  console.error(
+    `[sitemap] FATAL: ${path.relative(process.cwd(), sitemapPath)} missing — run astro build first.`,
+  );
   process.exit(1);
 }
 

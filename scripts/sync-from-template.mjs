@@ -40,12 +40,10 @@ function localize(source) {
         /<span class="truncate" aria-hidden="true">Dota<span class="text-primary">Cheats<\/span><\/span>/g,
         '<span class="truncate" aria-hidden="true">ARMA<span class="text-primary">Cheats</span></span>',
       )
-      // starwind: keep global.css loading at top so dev CSS matches production
-      .replace(
-        /@import "tw-animate-css";\r?\n@plugin/,
-        '@import "tw-animate-css";\n@import "./global.css";\n@plugin',
-      )
+      // Tailwind: postcss.config.mjs (@tailwindcss/postcss); starwind uses tailwindcss/index.css if synced.
       .replace(/\r?\n@import "\.\/global\.css";\s*$/u, '\n')
+      .replace(/@import "tailwindcss";/, '@import "tailwindcss/index.css";')
+      // PostCSS resolves index.css; bare "tailwindcss" breaks Vite postcss-import in some pipelines.
       // Master game sites (BattleBit / ARMA) use a two-line hero headline; NOT-OPTIMISED barrel is single-line.
       .replace(
         /function isScriptsHero\(title: string\) \{\r?\n\s*return title === 'Scripts';\r?\n\}/,

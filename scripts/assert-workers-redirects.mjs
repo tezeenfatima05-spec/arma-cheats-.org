@@ -1,9 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { getStaticOutputDir } from './dist-output.mjs';
 
-const redirectsPath = path.join(process.cwd(), 'dist', 'client', '_redirects');
+const redirectsPath = path.join(getStaticOutputDir(), '_redirects');
 if (!fs.existsSync(redirectsPath)) {
-  console.error('[deploy] FATAL: missing dist/client/_redirects');
+  console.error(`[deploy] FATAL: missing ${path.relative(process.cwd(), redirectsPath)}`);
   process.exit(1);
 }
 const body = fs.readFileSync(redirectsPath, 'utf8');

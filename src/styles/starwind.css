@@ -1,6 +1,7 @@
-@import "tailwindcss";
+@import "tailwindcss/index.css";
 @import "tw-animate-css";
-@import "./global.css";
+@source "../**/*.{astro,html,js,ts,mjs}";
+@source "../components/**/*.{astro,js,ts}";
 @plugin "@tailwindcss/forms";
 @custom-variant dark (&:where(.dark, .dark *));
 

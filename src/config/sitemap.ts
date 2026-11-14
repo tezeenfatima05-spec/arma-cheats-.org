@@ -1,5 +1,5 @@
 import type { SitemapItem } from '@astrojs/sitemap';
-import { blogPosts } from '../data/blog';
+import { blogPosts } from '../data/blog.ts';
 import { parseBlogDate } from '../utils/schema';
 import { SITE_ORIGIN } from './seo';
 

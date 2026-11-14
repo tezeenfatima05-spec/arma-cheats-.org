@@ -10,11 +10,17 @@ interface Block {
 
 interface Props {
   overviewTitle?: string;
+  overviewDesc?: string;
   blocks: Block[];
   showToggle: boolean;
 }
 
-const { overviewTitle, blocks, showToggle } = Astro.props;
+const {
+  overviewTitle,
+  overviewDesc = 'How this ARMA REFORGER suite fits multiplayer sessions, Cloud DMA setups, and post-patch workflows.',
+  blocks,
+  showToggle,
+} = Astro.props;
 ---
 
 <section
@@ -25,7 +31,7 @@ const { overviewTitle, blocks, showToggle } = Astro.props;
     <SectionHeader
       eyebrow="Overview"
       title={overviewTitle ?? 'Product description'}
-      desc="How this build fits ranked, Turbo, and patch-day workflows."
+      desc={overviewDesc}
       titleId="product-description-title"
       wide
     />

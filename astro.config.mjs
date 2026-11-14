@@ -1,16 +1,20 @@
 import { defineConfig } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
-import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import { sitemapSerialize } from './src/config/sitemap.ts';
 import workersRedirects from './integrations/workers-redirects.mjs';
-import { resolvePublicSiteOrigin } from './src/config/production-origin.mjs';
+import {
+  PRODUCTION_ORIGIN,
+  resolvePublicSiteOrigin,
+} from './src/config/production-origin.mjs';
 import { DEV_HOST, DEV_ORIGIN, DEV_PORT } from './src/config/dev-server.mjs';
 
-const productionOrigin = resolvePublicSiteOrigin(process.env.PUBLIC_SITE_ORIGIN);
+const productionOrigin =
+  resolvePublicSiteOrigin(process.env.PUBLIC_SITE_ORIGIN) || PRODUCTION_ORIGIN;
 
 export default defineConfig(({ command }) => {
   const isDev = command === 'dev';
+  // Sitemap + canonicals always target armacheats.org on production builds (never workers.dev).
   const siteOrigin = isDev ? DEV_ORIGIN : productionOrigin;
 
   return {
@@ -59,7 +63,6 @@ export default defineConfig(({ command }) => {
       }),
     ],
     vite: {
-      plugins: [tailwindcss()],
       server: {
         warmup: {
           clientFiles: ['./src/components/icons/registry.ts'],

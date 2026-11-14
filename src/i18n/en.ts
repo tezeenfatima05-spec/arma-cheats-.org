@@ -24,7 +24,7 @@ export const en: Translations = {
     status: 'ARMA REFORGER — build online',
     eyebrow: '#1 Undetected Provider',
     titleLine1: 'ARMA REFORGER',
-    titleLine2: 'Cheats for PC',
+    titleLine2: 'Cheats for PC — Aimbot, Player ESP & Wallhack',
     subtitle:
       'ARMA REFORGER cheats with aimbot, player ESP, wallhack, and config tools for PC multiplayer on Steam—preset configs, Cloud DMA options, and support at armacheats.org.',
     ctaPrimary: 'View products',
