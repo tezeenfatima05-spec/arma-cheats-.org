@@ -1,5 +1,5 @@
 import type { Translations } from './types';
-import { PRIMARY_CHECKOUT_PATH } from '../config/checkout';
+import { PRIMARY_CHECKOUT_URL } from '../config/checkout';
 import { PRODUCT_BASE, SUPPORT_EMAIL } from '../config/site';
 
 const productBase = PRODUCT_BASE;
@@ -11,9 +11,10 @@ export const en: Translations = {
     title: 'ARMA REFORGER Cheats — Aimbot, ESP & Wallhack | ARMA Cheats',
     description:
       'Explore ARMA REFORGER cheats for PC featuring customizable aimbot, player ESP, wallhack, skeleton ESP, health bars, weapon information, and Cloud DMA support at ARMA Cheats.',
-    discord: PRIMARY_CHECKOUT_PATH,
+    discord: PRIMARY_CHECKOUT_URL,
   },
   nav: [
+    { href: '/', label: 'Home', ariaLabel: 'Home' },
     { href: `${productBase}`, label: 'Products' },
     { href: '/blog/', label: 'Blog' },
     { href: '/forum/', label: 'Forum' },
@@ -144,7 +145,7 @@ export const en: Translations = {
       {
         title: 'On-page guides',
         subtitle: 'Learn before you queue.',
-        desc: 'Blog and forum posts cover aimbot tuning, ESP clutter reduction, and Cloud DMA prep.',
+        desc: 'Blog guides and community Q&A cover aimbot tuning, ESP clutter reduction, and Cloud DMA prep for ARMA REFORGER only.',
         bullets: ['Aimbot setup walkthrough', 'ESP layout examples', 'Purchase and install FAQ'],
         tags: ['guides', 'setup tips', 'ARMA REFORGER cheats'],
         bento: 'sm:col-span-2 lg:col-span-4 lg:col-start-9 lg:row-start-2',
@@ -397,7 +398,7 @@ export const en: Translations = {
         title: 'Chat before checkout',
         desc: 'Questions about Cloud DMA or features?',
         linkLabel: 'Start checkout',
-        href: PRIMARY_CHECKOUT_PATH,
+        href: PRIMARY_CHECKOUT_URL,
       },
       {
         icon: 'headphones',

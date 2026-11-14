@@ -1,5 +1,5 @@
 import { t } from '../i18n';
-import { checkoutForSlug, checkoutPath } from '../config/checkout';
+import { checkoutForSlug, checkoutUrl } from '../config/checkout';
 import { PRODUCT_BASE } from '../config/site';
 import type { IconName } from '../components/icons/types';
 
@@ -420,5 +420,5 @@ export const productHub = {
   subtitle: t.products.subtitle,
   description:
     'ARMA REFORGER cheats, Cloud DMA, and HWID Spoofer utilities for PC—with secure checkout on each product card.',
-  buyUrl: checkoutPath('armaReforger'),
+  buyUrl: checkoutUrl('armaReforger'),
 };

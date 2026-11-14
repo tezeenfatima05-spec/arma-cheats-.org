@@ -243,13 +243,19 @@ html.dark #why-us .why-compare-other-card :hover .icon-app {
   top: 1rem;
 }
 
-/* Navbar (desktop + mobile sheet): primary on hover only — not when .is-active */
+/* Navbar: current page uses primary + subtle pill so visitors see where they are */
 a.nav-link[data-nav-link].is-active {
-  color: var(--muted-foreground);
+  color: var(--primary);
+  font-weight: 600;
+  background: color-mix(in oklch, var(--primary) 14%, transparent);
+  border-radius: 0.5rem;
+  padding: 0.35rem 0.65rem;
+  margin: -0.35rem -0.65rem;
 }
 
 a.nav-link[data-nav-link].is-active:hover {
   color: var(--primary);
+  background: color-mix(in oklch, var(--primary) 20%, transparent);
 }
 
 a.nav-link[data-nav-link] .icon-app {

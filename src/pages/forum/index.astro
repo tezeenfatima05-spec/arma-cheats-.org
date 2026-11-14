@@ -68,7 +68,7 @@ const sourceTimestamp = (path?: string) => {
                 <div class="forum-post-card__body">
                   <div class="forum-post-meta">
                     <span class={`forum-community-avatar tone-${post.categoryTone}`}><Icon name="users" size={15} /></span>
-                    <a href="#communities" class="forum-community-name">d/{post.category.toLowerCase().replaceAll(' ', '')}</a>
+                    <span class="forum-community-name">{post.category}</span>
                     <span>·</span><span><Icon name="userRound" size={13} /> ARMA Cheats guide team</span><span>Guide-based Q&amp;A</span>
                   </div>
                   <a class="forum-post-title" href={`/forum/${post.slug}/`}>{post.title}</a>

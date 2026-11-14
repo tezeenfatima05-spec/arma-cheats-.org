@@ -54,6 +54,21 @@ export const PAGE_SEO: Record<string, PageSeoEntry> = {
     description:
       'What Cloud DMA compatibility means on PC and what to verify—firmware, cabling, and OS—before checkout for ARMA REFORGER.',
   },
+  '/blog/arma-reforger-config-profiles/': {
+    title: 'ARMA REFORGER config profiles — save & load presets | Cheats',
+    description:
+      'Create, duplicate, rename, and delete ARMA REFORGER cheat config profiles for Conflict, Seize, and custom loadouts on PC.',
+  },
+  '/blog/arma-reforger-wallhack-tips/': {
+    title: 'ARMA REFORGER wallhack tips — less ESP clutter | Cheats',
+    description:
+      'Tighten wallhack-style ESP on ARMA REFORGER: distance caps, weapon tags, and line-to-enemy toggles without on-screen noise.',
+  },
+  '/blog/how-to-buy-arma-reforger-cheats/': {
+    title: 'How to buy ARMA REFORGER cheats — checkout & launch | Cheats',
+    description:
+      'Step-by-step Buy now checkout, loader download, and first-session checklist for ARMA REFORGER aimbot and ESP on armacheats.org.',
+  },
   '/forum/': {
     title: 'Arma Reforger Community Forum — aimbot & ESP | Cheats',
     description:

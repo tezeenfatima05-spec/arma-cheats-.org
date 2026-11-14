@@ -10,7 +10,7 @@ import {
   breadcrumbSchema,
   parseBlogDate,
 } from '../../utils/schema';
-import { checkoutPath, resolveCheckoutHref } from '../../config/checkout';
+import { checkoutUrl, resolveCheckoutHref } from '../../config/checkout';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import ResponsiveImage from '../../components/ResponsiveImage.astro';
 import BlogSidebar from '../../components/BlogSidebar.astro';
@@ -181,7 +181,7 @@ const published = parseBlogDate(post.date);
           </Prose>
 
           <nav class="blog-article__actions" aria-label="Continue reading">
-            <Button as="a" href={checkoutPath('armaReforger')} variant="primary" aria-label={t.ui.checkoutAria}>
+            <Button as="a" href={checkoutUrl('armaReforger')} variant="primary" aria-label={t.ui.checkoutAria}>
               Buy ARMA REFORGER Cheats
               <Icon name="arrowRight" size={17} />
             </Button>

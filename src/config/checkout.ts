@@ -23,19 +23,25 @@ export function checkoutPath(product: CheckoutProduct = 'armaReforger'): string 
   return `/go/${CHECKOUT_SLUGS[product]}/`;
 }
 
+/** External Zadeyo checkout URL (same-tab Buy now on product cards). */
+export function checkoutUrl(product: CheckoutProduct = 'armaReforger'): string {
+  return CHECKOUT[product];
+}
+
 /** Default product checkout redirect (replaces legacy Discord CTAs). */
 export const PRIMARY_CHECKOUT_PATH = checkoutPath('armaReforger');
+export const PRIMARY_CHECKOUT_URL = checkoutUrl('armaReforger');
 
 /** Map internal product slugs to checkout redirect paths. */
 export function checkoutForSlug(slug: string): string {
   switch (slug) {
     case 'cloud-dma':
-      return checkoutPath('cloudDma');
+      return checkoutUrl('cloudDma');
     case 'hwid-spoofer':
-      return checkoutPath('hwidSpoofer');
+      return checkoutUrl('hwidSpoofer');
     case 'arma-reforger':
     default:
-      return checkoutPath('armaReforger');
+      return checkoutUrl('armaReforger');
   }
 }
 

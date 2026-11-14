@@ -22,7 +22,6 @@ interface Props {
   badge?: string;
   variant?: 'essential' | 'popular' | 'limited';
   buyLabel?: string;
-  viewLabel?: string;
   maxFeatures?: number;
   class?: string;
 }
@@ -38,7 +37,6 @@ const {
   badge,
   variant,
   buyLabel = 'Buy now',
-  viewLabel = 'View details',
   maxFeatures = 10,
   class: className,
 } = Astro.props;
@@ -102,13 +100,9 @@ const statusBadgeIcon = (text: string): IconName => {
       {more > 0 && <li class="text-xs text-muted-foreground">+{more} more features</li>}
     </ul>
   </CardContent>
-  <CardFooter class="flex flex-col gap-2 sm:flex-row">
-    <Button as="a" href={buyUrl} variant="primary" size="sm" class="w-full sm:flex-1">
+  <CardFooter>
+    <Button as="a" href={buyUrl} variant="primary" size="sm" class="w-full">
       {buyLabel}
-      <Icon name="arrowRight" size={17} />
-    </Button>
-    <Button as="a" href={href} variant="outline" size="sm" class="w-full sm:flex-1">
-      {viewLabel}
       <Icon name="arrowRight" size={17} />
     </Button>
   </CardFooter>
